@@ -1,0 +1,49 @@
+/* 尺寸 */
+$pageMinWidth: 1440px;
+$topNavHeight: 54px;
+$leftWidthMax: 180px;
+
+/* 主颜色 */
+$colorM1: #4B9ADE !default;
+$colorM2: #034278 !default;
+$colorM3: #9CC7EC !default;
+$colorM4: #1E63A0 !default;
+
+/* 其他颜色 */
+$color1: #203025 !default;
+$color2: #333333 !default;
+$color3: #69707E !default;
+$color4: #9CA6B9 !default;
+$color5: #FBFBFB !default;
+$color6: #FFFFFF !default;
+$color7: #F4F4F4 !default;
+$color8: #E9E9E9 !default;
+
+/* 字号大小 */
+$fontA: 28px !default;
+$fontB: 24px !default;
+$fontC: 20px !default;
+$fontD: 18px !default;
+$fontE: 16px !default;
+$fontF: 14px !default;
+$fontG: 12px !default;
+$fontH: 10px !default;
+$fontI: 8px !default;
+$fontJ: 6px !default;
+
+
+:export {
+  colorM1: $colorM1;
+  colorM2: $colorM2;
+  colorM3: $colorM3;
+
+  color1: $color1;
+  color2: $color2;
+  color3: $color3;
+  color4: $color4;
+  color5: $color5;
+  color6: $color6;
+
+  topNavHeight: $topNavHeight;
+  leftWidthMax: $leftWidthMax;
+}

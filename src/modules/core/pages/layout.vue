@@ -1,0 +1,70 @@
+<template>
+  <el-container class="layout">
+    <el-header :height="headerHeight">
+      <layout-header></layout-header>
+    </el-header>
+
+    <el-container class="layout-content">
+      <el-aside :width="leftWidthMax">
+        <layout-sidebar></layout-sidebar>
+      </el-aside>
+      <el-main>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+        <h1>asdasdasd</h1>
+      </el-main>
+    </el-container>
+  </el-container>
+</template>
+
+<script>
+import LayoutHeader from '@/modules/core/components/layout-header'
+import scssConfig from '@/assets/scss/config.scss'
+import LayoutSidebar from '@/modules/core/components/layout-sidebar'
+
+export default {
+  name: 'layout',
+  components: { LayoutSidebar, LayoutHeader },
+  data () {
+    return {
+      headerHeight: scssConfig.topNavHeight,
+      leftWidthMax: scssConfig.leftWidthMax
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+  .layout {
+    height: 100%;
+
+    .el-header {
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+    }
+
+    .layout-content {
+      height: 100%;
+      overflow-y: hidden;
+
+      .el-aside {
+      }
+
+      .el-main {
+        overflow-y: auto;
+      }
+    }
+  }
+</style>
