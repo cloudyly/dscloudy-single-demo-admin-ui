@@ -1,0 +1,67 @@
+@import "config";
+
+.sidebar {
+  transition: width 0.3s;
+
+  .el-menu-item.is-active,
+  li.el-menu-item:hover {
+    border-left: 3px solid $colorM1;
+    background-color: rgba($colorM2, 0.06);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .global-nav {
+    i:before {
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+
+    span {
+      transition: display 0.5s 3s;
+    }
+  }
+
+  .el-submenu span,
+  .el-menu-item span {
+    margin-left: 14px;
+    font-size: $fontF;
+  }
+
+  .el-submenu .el-menu-item {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 30px;
+    min-width: $leftWidthMax;
+    box-shadow: inset -1px 0 0 0 $color7;
+  }
+
+  .menu-collapse {
+
+    .global-nav {
+      i:before {
+        display: inline-block;
+        transform: rotate(90deg) !important;
+      }
+
+      span {
+        display: none;
+      }
+    }
+
+    .el-menu-item span,
+    .el-submenu > .el-submenu__title span {
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      visibility: hidden;
+      display: inline-block;
+    }
+
+    .el-submenu__icon-arrow {
+      display: none;
+    }
+  }
+}

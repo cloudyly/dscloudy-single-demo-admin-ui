@@ -1,71 +1,52 @@
 <template>
   <div class="sidebar">
-    <div class="global-nav">
-      <i class="ds-shousuo-zhankai"></i>
-      <span>全局导航</span>
-    </div>
-    <div class="divider"></div>
+    <el-menu default-active="0" class="el-menu-vertical-demo" :collapse="menuCollapse"
+             :class="{'menu-collapse': menuCollapse}">
+      <div class="global-nav">
+        <i class="ds-shousuo-zhankai" @click="toggleMenuCollapse"></i>
+        <span>全局导航</span>
+      </div>
+      <div class="divider"></div>
 
-    <el-menu default-active="0" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
-      <el-menu-item index="0">
-        <i class="el-icon-menu"></i>
-        <span slot="title">工作台</span>
-      </el-menu-item>
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>补贴业务管理</span>
-        </template>
-      </el-submenu>
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>数据分析服务</span>
-        </template>
-      </el-submenu>
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>业务审核管理</span>
-        </template>
-      </el-submenu>
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>通知公告发布</span>
-        </template>
-      </el-submenu>
-
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>基础数据管理</span>
-        </template>
-      </el-submenu>
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>业务流程配置</span>
-        </template>
-      </el-submenu>
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>系统管理</span>
-        </template>
-      </el-submenu>
+      <layout-sidebar-item v-for="(item, index) in menuList" :key="index" :item="item"></layout-sidebar-item>
     </el-menu>
   </div>
 </template>
 
 <script>
+import LayoutSidebarItem from '@/modules/core/components/layout-sidebar-item'
+
 export default {
-  name: 'layout-sidebar'
+  name: 'layout-sidebar',
+  components: { LayoutSidebarItem },
+  data () {
+    return {
+      // menuList: this.$store.state.user.addRoutes // require('../mock/temp-menu').children
+    }
+  },
+  mounted () {
+    console.log(this.menuCollapse)
+    console.log(this.menuList)
+  },
+  methods: {
+    toggleMenuCollapse () {
+      this.$store.commit('setMenuCollapse', !this.menuCollapse)
+    }
+  },
+  computed: {
+    menuCollapse () {
+      return this.$store.state.ui.menu.collapse
+    },
+    menuList () {
+      return this.$store.state.user.addRoutes
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
   @import "~@/assets/scss/config.scss";
+
   .sidebar {
     background-color: $color5;
     height: 100%;
@@ -80,6 +61,7 @@ export default {
         color: $color4;
         font-size: $fontG;
         margin: 0 14px 0 20px;
+        cursor: pointer;
       }
 
       span {

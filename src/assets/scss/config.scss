@@ -2,6 +2,7 @@
 $pageMinWidth: 1440px;
 $topNavHeight: 54px;
 $leftWidthMax: 180px;
+$leftWidthMin: 60px;
 
 /* 主颜色 */
 $colorM1: #4B9ADE !default;
@@ -18,6 +19,7 @@ $color5: #FBFBFB !default;
 $color6: #FFFFFF !default;
 $color7: #F4F4F4 !default;
 $color8: #E9E9E9 !default;
+$color9: #4C8DC5 !default;
 
 /* 字号大小 */
 $fontA: 28px !default;
@@ -46,4 +48,5 @@ $fontJ: 6px !default;
 
   topNavHeight: $topNavHeight;
   leftWidthMax: $leftWidthMax;
+  leftWidthMin: $leftWidthMin;
 }

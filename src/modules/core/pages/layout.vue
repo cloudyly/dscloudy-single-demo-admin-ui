@@ -5,24 +5,12 @@
     </el-header>
 
     <el-container class="layout-content">
-      <el-aside :width="leftWidthMax">
+      <el-aside :width="menuCollapse ? leftWidthMin: leftWidthMax" class="sidebar">
         <layout-sidebar></layout-sidebar>
       </el-aside>
       <el-main>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
-        <h1>asdasdasd</h1>
+<!--        <demo-page></demo-page>-->
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -39,7 +27,14 @@ export default {
   data () {
     return {
       headerHeight: scssConfig.topNavHeight,
-      leftWidthMax: scssConfig.leftWidthMax
+      leftWidthMax: scssConfig.leftWidthMax,
+      leftWidthMin: scssConfig.leftWidthMin
+    }
+  },
+  computed: {
+    menuCollapse () {
+      console.log('onchange: ' + this.$store.state.ui.menu.collapse)
+      return this.$store.state.ui.menu.collapse
     }
   }
 }
@@ -63,6 +58,7 @@ export default {
       }
 
       .el-main {
+        padding: 0;
         overflow-y: auto;
       }
     }

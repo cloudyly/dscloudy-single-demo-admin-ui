@@ -1,6 +1,6 @@
-import Layout from '@/modules/core/pages/layout'
-
-const _import = require(`@/base/router/import_${process.env.NODE_ENV === 'development' ? 'development' : 'production'}`)
+// import Layout from '@/modules/core/pages/layout'
+//
+// const _import = require(`@/base/router/import_${process.env.NODE_ENV === 'development' ? 'development' : 'production'}`)
 
 export default [
   {
@@ -15,20 +15,38 @@ export default [
       {
         root: false,
         path: '/demo_index',
-        component: Layout,
+        component: 'Layout',
         name: 'Demo',
         meta: {
           title: 'Demo示例',
-          icon: 'component'
+          icon: 'ds-gongzuotai'
+        },
+        children: []
+      },
+      {
+        root: false,
+        path: '/examples',
+        component: 'Layout',
+        name: 'Demo',
+        meta: {
+          title: '测试组件',
+          icon: 'ds-tongzhigonggao'
         },
         children: [
           {
-            path: 'demo_dialog',
-            component: _import('demo/pages/index'),
-            name: 'DemoIndex',
+            path: 'datalist',
+            component: 'datalist',
+            name: 'DemoList',
             meta: {
-              title: 'Demo演示',
-              icon: 'component'
+              title: '列表Demo'
+            }
+          },
+          {
+            path: '/test32',
+            component: 'Layout',
+            name: 'Demo32',
+            meta: {
+              title: '详情Demo'
             }
           }
         ]

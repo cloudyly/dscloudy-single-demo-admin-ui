@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import { Message } from 'element-ui'
+import { Message } from 'element-ui'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-// import store from '../store'
-// import { getToken } from '../permission/token-utils'
-// import config from '@/config'
+import store from '@/base/store'
+import config from '@/config'
 import { constantRouterMap } from './constant-router'
 
 export { constantRouterMap }
@@ -14,7 +13,7 @@ Vue.use(Router)
 
 NProgress.configure({ showSpinner: false })
 
-// const _import = require(`@/base/router/import_${process.env.NODE_ENV === 'development' ? 'development' : 'production'}`)
+const _import = require(`@/base/router/import_${process.env.NODE_ENV === 'development' ? 'development' : 'production'}`)
 
 /**
  * 配置路由
@@ -27,15 +26,14 @@ const router = new Router({
 /**
  * 白名单 无需跳转
  */
-// const whiteList = config.whiteList
-/*
+const whiteList = config.whiteList
+
 const generateRouteTree = (routes, tree) => {
   tree.forEach(item => {
     if (!item.isModule) {
       const r = { ...item }
       if (r.componentName) {
         r.component = _import(r.componentName)
-        // r.component = () => _import(r.componentName)
       }
       if (item.children && item.children.length > 0) {
         r.children = []
@@ -49,47 +47,42 @@ const generateRouteTree = (routes, tree) => {
     }
   })
 }
-*/
+
+const removeModuleRoute = (routes) => {
+  const addRoutes = []
+  routes.forEach(item => {
+    if (item.isModule) {
+      addRoutes.push(...item.children)
+    } else {
+      addRoutes.push(item)
+    }
+  })
+  return addRoutes
+}
 
 router.beforeEach((to, from, next) => {
-  /*
   NProgress.start()
+  const token = store.state.user.token
   // 先判断是否有Token
-  if (getToken()) {
+  if (token) {
     if (to.path === '/login') {
       next({ path: '/' })
-      // if current page is dashboard will not trigger afterEach hook, so manually handle it
-      NProgress.done()
     } else {
       // 判断当前用户是否已获取到user_info信息
-      if (store.getters.roles.length === 0) {
+      if (!store.state.user.userInfo.id) {
         store.dispatch('getUserInfo').then(resp => {
-          const privilege = resp.privilege
-          // const dataPermisssionCode = resp.userInfo.codes
-          store.dispatch('generateRoutes', privilege).then(() => {
-            // 动态添加可访问路由表
-            const addRouters = store.getters.addRouters
-            const needGenerateRouters = []
-            generateRouteTree(needGenerateRouters, addRouters)
-            router.addRoutes(needGenerateRouters)
+          const dynamicRoutes = config.isMockMenu ? asyncRouterMap : resp.privilegeList
+          const addRoutes = removeModuleRoute(dynamicRoutes)
+          addRoutes.push({ path: '*', redirect: '/401', hidden: true })
+          store.commit('setAddRoutes', addRoutes)
 
-            Promise.all([store.dispatch('getFullDictList'),
-              store.dispatch('getOrgTree')]).then(() => {
-              store.dispatch('setDataPermission', resp.userInfo).then(() => {
-                next({ ...to, replace: true })
-              }).catch(e => {
-                Message.error(e)
-              })
-            }).catch((error) => {
-              console.log(error)
-              Message.error('获取品牌数据失败')
-            })
-          })
-        }).catch(() => {
-          store.dispatch('FedLogOut').then(() => {
-            Message.error('验证失败, 请重新登录')
-            next({ path: '/login' })
-          })
+          const needGenerateRouters = []
+          generateRouteTree(needGenerateRouters, addRoutes)
+          router.addRoutes(needGenerateRouters)
+        }).catch((err) => {
+          console.log(err)
+          Message.error('验证失败, 请重新登录')
+          next({ path: '/login' })
         })
       } else {
         next()
@@ -105,7 +98,6 @@ router.beforeEach((to, from, next) => {
       NProgress.done()
     }
   }
-  */
   next()
 })
 
@@ -121,5 +113,4 @@ export default router
 /**
  * 导出 业务路由
  **/
-export const asyncRouterMap = [
-]
+export const asyncRouterMap = []

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message, Loading } from 'element-ui'
 import store from '../store'
-import { getToken } from '../permission/token-utils'
+// import { getToken } from '../permission/token-utils'
 
 const instance = axios.create({
   timeout: 30 * 1000
@@ -11,7 +11,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     if (store.getters.token) {
-      config.headers.token = `${getToken()}`
+      // config.headers.token = `${getToken()}`
     }
     showLoading()
     return config
@@ -29,8 +29,8 @@ instance.interceptors.response.use(
   response => {
     closeLoading()
     const respData = response.data
-    if (respData && respData.status === 'SUCCESS') {
-      return Promise.resolve(respData.responseBody)
+    if (respData) {
+      return Promise.resolve(respData)
     }
     Message({
       message: `${respData.detailMessages}(${respData.errorCode})`,
@@ -177,7 +177,7 @@ export function download (url, param) {
     method: 'get',
     url: url,
     headers: {
-      token: getToken()
+      // token: getToken()
     },
     params: param,
     responseType: 'blob'
