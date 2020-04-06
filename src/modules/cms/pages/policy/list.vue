@@ -36,7 +36,7 @@ export default {
           { prop: 'title', label: '标 题', align: 'left', width: '250' },
           { prop: 'createUser', label: '创建者', align: 'left', width: '80' },
           { prop: 'createOrg', label: '所属组织', align: 'left', width: '80' },
-          { prop: 'createTime', label: '创建日期', align: 'left', width: '80' },
+          { prop: 'createTime', label: '创建日期', align: 'left', width: '100' },
           { prop: 'createArea', label: '所属地区', align: 'left', width: '80' },
           {
             label: '操作',

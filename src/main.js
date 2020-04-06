@@ -4,6 +4,11 @@ import ElementUI from 'element-ui'
 import './assets/scss/base.scss'
 import './icons'
 
+import QuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.bubble.css'
+import 'quill/dist/quill.snow.css'
+
 import App from './App.vue'
 import router from './base/router'
 import store from './base/store'
@@ -16,6 +21,8 @@ import moduleCore from '@/modules/core'
 import moduleCms from '@/modules/cms'
 import moduleSystem from '@/modules/system'
 // import moduleDemo from '@/modules/demo'
+
+Vue.use(QuillEditor)
 
 Vue.use(moduleCore, store)
 Vue.use(moduleCms, store)

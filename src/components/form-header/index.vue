@@ -19,7 +19,7 @@ export default {
   @import "~@/assets/scss/config.scss";
   .title {
     margin-top: 12px;
-    padding: 10px 20px;
+    padding: 10px $pagePadding;
     font-size: $fontE;
     margin-bottom: 8px;
   }

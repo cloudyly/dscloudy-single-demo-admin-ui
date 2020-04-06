@@ -1,0 +1,59 @@
+@import "./config.scss";
+
+.common-form {
+  margin: 0 $pagePadding 0 $pagePadding;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  .form-wrap {
+    flex: 1;
+
+    .el-form-item {
+      margin-bottom: 10px;
+
+      ::v-deep .el-form-item__label {
+        color: $color2 !important;
+        font-size: $fontF;
+        padding: 0 !important;
+      }
+
+      ::v-deep .el-input__inner {
+        border: 1px solid $color10;
+      }
+
+      .el-select {
+        width: 100%;
+      }
+
+      .editor {
+        height: 300px;
+        box-sizing: border-box;
+
+        ::v-deep .ql-toolbar.ql-snow {
+          border: 1px solid $color10;
+          border-radius: $inputRadius $inputRadius 0 0;
+        }
+
+        ::v-deep .ql-container.ql-snow {
+          border: 1px solid $color10;
+          border-top: none;
+          border-radius: 0 0 $inputRadius $inputRadius;
+        }
+      }
+    }
+  }
+
+  .form-footer {
+    margin-top: $pagePadding;
+    margin-bottom: $pagePadding;
+    text-align: center;
+    position: relative;
+
+    .right {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}

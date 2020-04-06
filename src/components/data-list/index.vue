@@ -8,10 +8,10 @@
     </div>
 
     <div class="data-list-wrap">
-      <el-table class="table" :data="dataList" header-cell-class-name="table-header" cell-class-name="table-cell"
+      <el-table class="table" :data="dataList" header-cell-class-name="table-header" cell-class-name="table-cell" height="100%"
                 :default-sort = "{prop: 'date', order: 'descending'}" stripe align="center" @selection-change="handleSelectionChange">
         <!-- 每一行第一列复选框 -->
-        <el-table-column v-if="cfg.selection" type="selection" :key="'cb'" width="50" align="center"></el-table-column>
+        <el-table-column v-if="cfg.selection" type="selection" :key="'cb'" width="50" align="center" fixed="left"></el-table-column>
 
         <el-table-column v-if="cfg.showIndex" label="No" width="50" align="center">
           <template slot-scope="scope"><span>{{scope.$index + 1}} </span></template>
@@ -401,8 +401,12 @@ export default {
 
   .data-list {
     @include container();
+    flex: 1;
+    overflow: hidden;
     margin-top: 12px;
     padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
 
     .header {
       @include flex();
@@ -418,6 +422,9 @@ export default {
     }
 
     .data-list-wrap {
+      flex: 1;
+      overflow-y: hidden;
+
       .el-table {
         border: 1px solid $color7;
 

@@ -18,9 +18,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "~@/assets/scss/config.scss";
   @import "~@/assets/scss/mixin.scss";
   .page {
-    padding: 18px;
+    padding: $pagePadding;
     /*width: 100%;*/
     box-sizing: border-box;
     flex: 1;
@@ -31,7 +32,7 @@ export default {
 
   .border {
     @include container();
-    margin: 18px !important;
+    margin: $pagePadding;
     overflow-y: auto;
     padding: 0;
     flex: 1;

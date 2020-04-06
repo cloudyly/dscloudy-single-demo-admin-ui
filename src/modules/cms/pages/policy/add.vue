@@ -1,49 +1,42 @@
 <template>
   <dsc-page-panel :border="true">
     <dsc-form-header title="发布新内容"></dsc-form-header>
-    <el-form ref="form" :model="form" label-width="80px">
-      <el-form-item label="活动名称">
-        <el-input v-model="form.name"></el-input>
-      </el-form-item>
-      <el-form-item label="活动区域">
-        <el-select v-model="form.region" placeholder="请选择活动区域">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="活动时间">
-        <el-col :span="11">
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
-        </el-col>
-        <el-col class="line" :span="2">-</el-col>
-        <el-col :span="11">
-          <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="即时配送">
-        <el-switch v-model="form.delivery"></el-switch>
-      </el-form-item>
-      <el-form-item label="活动性质">
-        <el-checkbox-group v-model="form.type">
-          <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-          <el-checkbox label="地推活动" name="type"></el-checkbox>
-          <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-          <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="特殊资源">
-        <el-radio-group v-model="form.resource">
-          <el-radio label="线上品牌商赞助"></el-radio>
-          <el-radio label="线下场地免费"></el-radio>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="活动形式">
-        <el-input type="textarea" v-model="form.desc"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
-      </el-form-item>
+
+    <el-form ref="form" :model="form" class="common-form" label-width="80px" label-position="top">
+      <div class="form-wrap">
+        <el-row :gutter="10">
+          <el-col :span="12">
+            <!-- 文章标题 -->
+            <el-form-item label="文章标题">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+
+            <!-- 文章子栏目 -->
+            <el-form-item label="文章子栏目">
+              <el-select v-model="form.region" placeholder="请选择活动区域">
+                <el-option label="区域一" value="shanghai"></el-option>
+                <el-option label="区域二" value="beijing"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-form-item label="正文内容">
+          <quill-editor class="editor" :options="editorOptions"></quill-editor>
+          <div style="height: 48px">&nbsp;</div>
+        </el-form-item>
+      </div>
+
+      <div class="form-footer">
+        <el-button type="primary">立即发布</el-button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <el-button type="primary" plain>效果预览</el-button>
+
+        <div class="right">
+          <el-checkbox plain v-model="form.onlySave">仅保存至后台，暂不可见</el-checkbox>
+        </div>
+      </div>
     </el-form>
   </dsc-page-panel>
 </template>
@@ -53,7 +46,12 @@ export default {
   name: 'PolicyAdd',
   data () {
     return {
-      form: {}
+      form: {
+        onlySave: false
+      },
+      editorOptions: {
+        placeholder: '请输入正文内容…'
+      }
     }
   }
 }
@@ -61,10 +59,12 @@ export default {
 
 <style scoped lang="scss">
   @import "~@/assets/scss/config.scss";
-  .title {
-    margin-top: 12px;
-    padding: 10px 20px;
-    font-size: $fontE;
-    margin-bottom: 8px;
+  @import "~@/assets/scss/form.scss";
+  .common-form {
+    .form-footer {
+      .right {
+        top: 5px;
+      }
+    }
   }
 </style>
