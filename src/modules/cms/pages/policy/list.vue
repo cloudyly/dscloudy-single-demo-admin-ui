@@ -28,15 +28,20 @@ export default {
         selection: true,
         title: '政策法规列表',
         itemList: [
-          { prop: 'category', label: '栏目名称', align: 'left' },
-          { prop: 'category', label: '子栏目', align: 'left' },
-          { prop: 'title', label: '标 题', align: 'left' },
-          { prop: 'createUser', label: '创建者', align: 'left' },
-          { prop: 'createOrg', label: '所属组织', align: 'left' },
-          { prop: 'createTime', label: '创建日期', align: 'left' },
-          { prop: 'createArea', label: '所属地区', align: 'left' },
+          { prop: 'category', label: '栏目名称', align: 'left', width: '80' },
+          { prop: 'category', label: '子栏目', align: 'left', width: '80' },
+          { prop: 'title', label: '标 题', align: 'left', width: '250' },
+          { prop: 'title', label: '标 题', align: 'left', width: '250' },
+          { prop: 'title', label: '标 题', align: 'left', width: '250' },
+          { prop: 'title', label: '标 题', align: 'left', width: '250' },
+          { prop: 'createUser', label: '创建者', align: 'left', width: '80' },
+          { prop: 'createOrg', label: '所属组织', align: 'left', width: '80' },
+          { prop: 'createTime', label: '创建日期', align: 'left', width: '80' },
+          { prop: 'createArea', label: '所属地区', align: 'left', width: '80' },
           {
             label: '操作',
+            fixed: 'right',
+            width: '150',
             needAcl: true,
             func: (data) => {
               return {
