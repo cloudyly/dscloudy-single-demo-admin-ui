@@ -9,8 +9,10 @@
         <layout-sidebar></layout-sidebar>
       </el-aside>
       <el-main>
-<!--        <demo-page></demo-page>-->
-        <router-view></router-view>
+        <layout-tags class="layout-tags"></layout-tags>
+        <div class="layout-main">
+          <router-view></router-view>
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -20,10 +22,11 @@
 import LayoutHeader from '@/modules/core/components/layout-header'
 import scssConfig from '@/assets/scss/config.scss'
 import LayoutSidebar from '@/modules/core/components/layout-sidebar'
+import LayoutTags from '@/modules/core/components/layout-tags'
 
 export default {
   name: 'layout',
-  components: { LayoutSidebar, LayoutHeader },
+  components: { LayoutTags, LayoutSidebar, LayoutHeader },
   data () {
     return {
       headerHeight: scssConfig.topNavHeight,
@@ -41,6 +44,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "~@/assets/scss/config.scss";
   .layout {
     height: 100%;
 
@@ -59,7 +63,23 @@ export default {
 
       .el-main {
         padding: 0;
-        overflow-y: auto;
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+
+        .layout-tags {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+        }
+
+        .layout-main {
+          flex: 1;
+          margin-top: 35px;
+          overflow-y: auto;
+        }
       }
     }
   }

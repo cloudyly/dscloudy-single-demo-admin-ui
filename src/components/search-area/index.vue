@@ -3,7 +3,9 @@
     <el-form ref="form" size="mini" :model="form" v-bind:label-width="labelWidth" :label-position="labelTextAlign" @submit.native.prevent>
       <div class="search-form">
         <el-row v-for="(rowArray, rowIndex) in newItemList" v-bind:key="rowIndex" :gutter="20">
-          <el-col :span="spanNum" v-for="(item, colIndex) in rowArray" v-bind:key="colIndex" justify="end">&nbsp;
+          <el-col v-for="(item, colIndex) in rowArray" v-bind:key="colIndex"
+                  justify="end"
+                  :span="((rowIndex === newItemList.length - 1) && (colIndex === rowArray.length - 1)) ? lastSpanNum : spanNum">
 
             <!-- 普通的文本输入框 -->
             <el-form-item v-if="item && item.type && (item.type === 'text')" :label="item.label">
@@ -116,7 +118,7 @@
             </div>
 
             <!-- 搜索按钮 -->
-            <div v-else-if="item && item.type && (item.type === 'optbutton')" align="right" class="opt-btn-wrap">
+            <div v-else-if="item && item.type && (item.type === 'optbutton')" align="right" class="opt-btn-wrap" :class="(remainNum === 0) ? 'opt-btn-line' : ''">
               <el-button type="primary" size="mini" @click="onSearchClick">
                 <i class="ds-Search"></i>立即搜索
               </el-button>
@@ -153,7 +155,9 @@ export default {
       labelWidth: '105px',
       labelTextAlign: 'top',
       newItemList: null,
-      spanNum: 6
+      spanNum: 6,
+      lastSpanNum: 6,
+      remainNum: 0
     }
   },
   created () {
@@ -175,14 +179,16 @@ export default {
       }
       // 计算总共有多少行
       let totalRows = Number.parseInt(((this.itemList.length + 1) / this.cols).toString())
-      const remainNumber = (this.itemList.length + 1) % this.cols
-      if (remainNumber > 0) {
+      this.remainNum = (this.itemList.length + 1) % this.cols
+      if (this.remainNum > 0) {
         totalRows += 1
 
-        for (let i = 0; i < remainNumber; i++) {
-          this.itemList.push({ type: 'blank' })
-        }
+        // for (let i = 0; i < remainNumber; i++) {
+        //   this.itemList.push({ type: 'blank' })
+        // }
       }
+      this.lastSpanNum = this.spanNum * (this.cols - this.remainNum + 1)
+      console.log('remainNumber: ' + this.remainNum + ', this.lastSpanNum: ' + this.lastSpanNum)
       this.newItemList = new Array(totalRows)
 
       // 初始化 newItemList 为一个二维数组
@@ -228,16 +234,6 @@ export default {
     getPlaceholder (item) {
       return (item.placeholder ? item.placeholder : item.label) || ''
     }
-  },
-  watch: {
-    cfg: {
-      immediate: true,
-      deep: true,
-      handler: function (val, oldVal) {
-        this.itemList = val.itemList
-        this.initNewItemList()
-      }
-    }
   }
 }
 </script>
@@ -278,6 +274,12 @@ export default {
           margin-right: 3px;
         }
       }
+    }
+
+    .opt-btn-line {
+      position: absolute;
+      right: 0;
+      bottom: 0;
     }
   }
 </style>
