@@ -32,8 +32,19 @@ export default [
                 { code: '10002', title: '查看', icon: 'el-icon-view' },
                 { code: '10003', title: '编辑', icon: 'el-icon-edit' },
                 { code: '10004', title: '隐藏', icon: 'el-icon-turn-off' },
-                { code: '10005', title: '删除', icon: 'el-icon-delete' }
+                { code: '10005', title: '删除', icon: 'el-icon-delete' },
+                { code: '10006', title: '批量隐藏' },
+                { code: '10007', title: '批量删除' }
               ]
+            }
+          },
+          {
+            path: 'policy_add',
+            component: _import('cms/pages/policy/add'),
+            name: 'PolicyAdd',
+            hidden: true,
+            meta: {
+              title: '政策法规新增'
             }
           },
           {

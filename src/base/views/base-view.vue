@@ -3,7 +3,8 @@ export default {
   name: 'base-view',
   data () {
     return {
-      demo: 'demo'
+      demo: 'demo',
+      blankFn: () => {}
     }
   }
 }

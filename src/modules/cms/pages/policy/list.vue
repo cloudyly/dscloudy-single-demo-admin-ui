@@ -2,6 +2,8 @@
   <dsc-page-panel>
     <dsc-search-area :cfg="searchAreaCfg"></dsc-search-area>
     <dsc-data-list :cfg="dataListCfg"></dsc-data-list>
+
+    <dsc-dialog-delete ref="dialogDeleteRef"></dsc-dialog-delete>
   </dsc-page-panel>
 </template>
 
@@ -12,6 +14,7 @@ export default {
   name: 'PolicyList',
   data () {
     return {
+      dialogVisible: true,
       searchAreaCfg: {
         itemList: [
           { type: 'select', model: 'subCategory', label: '按子栏目名称', placeholder: '请选择子栏目', options: [{ label: '子栏目1', value: 'sc1' }, { label: '子栏目2', value: 'sc2' }] },
@@ -47,13 +50,17 @@ export default {
               /* 查看 */ { code: '10002', func: this.tempFn },
               /* 编辑 */ { code: '10003', func: this.tempFn },
               /* 隐藏 */ { code: '10004', func: this.tempFn },
-              /* 删除 */ { code: '10005', func: this.tempFn }
+              /* 删除 */ { code: '10005', func: this.onBtnDeleteClick }
             ]
           }
         ],
+        selectedBtnList: [
+          /* 批量隐藏 */ { code: '10006', func: this.tempFn },
+          /* 批量删除 */ { code: '10007', func: this.tempFn }
+        ],
         toolbar: {
           btnList: [
-            /* 发布新内容 el-icon-plus */{ code: '10001', click: () => { console.log('test') } }
+            /* 发布新内容 el-icon-plus */{ code: '10001', click: this.onBtnAddClick }
           ]
         }
       }
@@ -64,11 +71,21 @@ export default {
   methods: {
     tempFn (item) {
       console.log(item)
+    },
+    onBtnAddClick () {
+      this.$router.push({
+        path: '/cms/policy_add'
+      })
+    },
+    onBtnDeleteClick (item) {
+      this.$refs.dialogDeleteRef.show(item, () => {
+        console.log('确定删除', item)
+      })
     }
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>

@@ -30,11 +30,11 @@
             <template slot-scope="scope">
               <span style="display: none">{{ rowBtnList = calcRowBtnList(scope.row) }}</span>
               <div v-if="rowBtnList.length < 3">
-                <el-button v-for="(btn, i) in rowBtnList" :key="i" size="small" type="text" @click="btn.func(scope.row)">
+                <el-button v-for="(btn, i) in rowBtnList" :key="i" size="small" type="text" class="data-list-btn" @click="btn.func(scope.row)">
                   <i v-if="btn.icon" :class="btn.icon"></i>{{btn.label}}</el-button>
               </div>
               <div v-else style="text-align: center">
-                <el-button size="small" type="text" @click="rowBtnList[0].func(scope.row)">
+                <el-button size="small" type="text" @click="rowBtnList[0].func(scope.row)" class="data-list-btn">
                   <i v-if="rowBtnList[0].icon" :class="rowBtnList[0].icon"></i>{{rowBtnList[0].label}}
                 </el-button>
                 <el-dropdown size="mini" trigger="click">
@@ -42,7 +42,7 @@
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item v-for="(btn, i) in rowBtnList.slice(1)" :key="i">
                       <template>
-                        <el-button style="text-align: center; width: 100%" size="small" type="text" @click="btn.func(scope.row)">
+                        <el-button style="text-align: center; width: 100%" size="small" type="text" class="data-list-btn" @click="btn.func(scope.row)">
                           <i v-if="btn.icon" :class="btn.icon"></i>{{btn.label}}</el-button>
                       </template>
                     </el-dropdown-item>
@@ -158,18 +158,24 @@
     <!-- v-show="(needPage !== false) && (totalRecords > pageSize)"
     v-show="(!autoPage && (needPage !== false)) || (autoPage && (needPage !== false) && (totalRecords > pageSize)) || true"
     -->
-    <el-pagination
-        align="right"
-        style="margin-top: 20px;"
-        :background="true"
-        layout="prev, pager, next, sizes, total"
-        :page-sizes="pageSizeArray"
-        :page-size="pageSize"
-        @size-change="onSizeChange"
-        @current-change="onPageChange"
-        :current-page="pageNum"
-        :total="totalRecords">
-    </el-pagination>
+    <div class="footer">
+      <div class="footer-btns" v-show="multipleSelection && multipleSelection.length > 0 && footerBtnList.length > 0">
+        <el-button type="primary" plain v-for="(btn, index) in footerBtnList" :key="index" @click="btn.func">{{btn.label}}</el-button>
+      </div>
+      <div class="footer-page">
+        <el-pagination align="right"
+                       :background="true"
+                       layout="prev, pager, next, sizes, total"
+                       :page-sizes="pageSizeArray"
+                       :page-size="pageSize"
+                       @size-change="onSizeChange"
+                       @current-change="onPageChange"
+                       :current-page="pageNum"
+                       :total="totalRecords">
+        </el-pagination>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -200,7 +206,8 @@ export default {
       btnList: [],
       rowBtnFunc: null,
       needAcl: false,
-      cfgChange: true
+      cfgChange: true,
+      footerBtnList: []
     }
   },
   created () {
@@ -224,6 +231,8 @@ export default {
           }
         }
       }
+      this.calcFooterBtnList(this.cfg.selectedBtnList)
+      console.log(this.footerBtnList)
     },
     calcBtnList (col) {
       this.btnList = []
@@ -244,6 +253,23 @@ export default {
         this.btnList = col.btns
       }
       this.rowBtnFunc = col.func
+    },
+    calcFooterBtnList (footerBtnList) {
+      if (!footerBtnList || footerBtnList.length <= 0) {
+        this.footerBtnList = []
+        return
+      }
+      const permissionBtnList = this.$router.currentRoute.meta.btnList
+      footerBtnList.forEach(btn => {
+        const item = permissionBtnList.find(pBtn => btn.code === pBtn.code)
+        if (item) {
+          this.footerBtnList.push({
+            ...item,
+            label: item.title,
+            func: btn.func
+          })
+        }
+      })
     },
     calcRowBtnList (data) {
       if (this.rowBtnFunc) {
@@ -331,6 +357,7 @@ export default {
     },
     handleSelectionChange (val) {
       this.multipleSelection = val
+      console.log(this.multipleSelection)
     },
     reload (searchEntity, cfgChange) {
       this.searchEntity = searchEntity
@@ -411,6 +438,26 @@ export default {
           background-color: transparent;
         }
       }
+    }
+
+    .footer {
+      margin-top: 10px;
+      display: flex;
+
+      .footer-btns {
+        margin-left: 20px;
+      }
+
+      .footer-page {
+        flex: 1;
+      }
+    }
+  }
+
+  .data-list-btn {
+    i {
+      margin-right: 5px;
+      font-size: $fontF !important;
     }
   }
 </style>

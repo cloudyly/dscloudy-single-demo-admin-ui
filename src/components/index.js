@@ -3,13 +3,19 @@ import DscSearchArea from './search-area'
 import DscDataList from './data-list'
 import DscToolBar from './tool-bar'
 import DscPagePanel from './page-panel'
+import DscDialog from './dialog'
+import DscDialogDelete from './dialog-delete'
+import DscFormHeader from './form-header'
 
 const components = [
   DscDemoTest,
   DscSearchArea,
   DscDataList,
   DscToolBar,
-  DscPagePanel
+  DscPagePanel,
+  DscDialog,
+  DscDialogDelete,
+  DscFormHeader
 ]
 
 // 在引入组件时，能使用 Vue.use(XXX). 该use方法会调用此处提供的 install 方法

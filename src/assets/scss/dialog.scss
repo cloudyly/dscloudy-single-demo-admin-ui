@@ -1,0 +1,11 @@
+@import "./config.scss";
+
+.dialog-container {
+  .footer {
+    text-align: center;
+  }
+
+  ::v-deep .el-icon-close:before {
+    color: $colorM1;
+  }
+}

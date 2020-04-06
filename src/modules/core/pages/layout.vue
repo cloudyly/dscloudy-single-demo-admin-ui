@@ -76,9 +76,12 @@ export default {
         }
 
         .layout-main {
+          width: 100%;
           flex: 1;
           margin-top: 35px;
           overflow-y: auto;
+          display: flex;
+          flex-direction: column;
         }
       }
     }
