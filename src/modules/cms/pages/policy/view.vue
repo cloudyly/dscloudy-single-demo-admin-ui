@@ -1,11 +1,11 @@
 <template>
-  <policy-details opt="A"></policy-details>
+  <policy-details opt="V"></policy-details>
 </template>
 
 <script>
 import PolicyDetails from '@/modules/cms/components/policy-details'
 export default {
-  name: 'PolicyAdd',
+  name: 'PolicyView',
   components: { PolicyDetails }
 }
 </script>

@@ -21,11 +21,9 @@ export default {
   components: { LayoutSidebarItem },
   data () {
     return {
-      // menuList: this.$store.state.user.addRoutes // require('../mock/temp-menu').children
     }
   },
   mounted () {
-    console.log(this.menuCollapse)
     console.log(this.menuList)
   },
   methods: {

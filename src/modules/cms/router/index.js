@@ -44,25 +44,25 @@ export default [
             name: 'PolicyAdd',
             hidden: true,
             meta: {
-              title: '政策法规新增'
+              title: '政策法规-新增'
             }
           },
           {
-            path: 'policy_view',
+            path: 'policy_view/:id(\\d+)',
             hidden: true,
-            component: _import('cms/pages/news/list'),
+            component: _import('cms/pages/policy/view'),
             name: 'PolicyView',
             meta: {
-              title: '政策法规发布-查看'
+              title: '政策法规-详情'
             }
           },
           {
-            path: 'policy_edit',
+            path: 'policy_edit/:id(\\d+)',
             hidden: true,
-            component: _import('cms/pages/news/list'),
+            component: _import('cms/pages/policy/edit'),
             name: 'PolicyEdit',
             meta: {
-              title: '政策法规发布-编辑'
+              title: '政策法规-编辑'
             }
           },
           {

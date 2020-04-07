@@ -11,7 +11,11 @@
       <el-main>
         <layout-tags class="layout-tags"></layout-tags>
         <div class="layout-main">
-          <router-view></router-view>
+          <transition name="fade-transform" mode="out-in">
+            <keep-alive :include="cachedViews">
+              <router-view :key="key" />
+            </keep-alive>
+          </transition>
         </div>
       </el-main>
     </el-container>
@@ -38,6 +42,13 @@ export default {
     menuCollapse () {
       console.log('onchange: ' + this.$store.state.ui.menu.collapse)
       return this.$store.state.ui.menu.collapse
+    },
+    cachedViews () {
+      console.log(this.$store.state.tagsView.cachedViews)
+      return this.$store.state.tagsView.cachedViews
+    },
+    key () {
+      return this.$route.path
     }
   }
 }

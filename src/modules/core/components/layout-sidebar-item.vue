@@ -34,6 +34,9 @@ export default {
     item: {
       type: Object
     }
+  },
+  created () {
+    console.log(this.item)
   }
 }
 </script>

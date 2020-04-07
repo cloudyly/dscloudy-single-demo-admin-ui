@@ -9,6 +9,7 @@ export default {
     userInfo: `${config.host.core}/userInfo`
   },
   cms: {
-    policyList: `${config.host.cms}/policyList`
+    policyList: `${config.host.cms}/policyList`,
+    policyDetails: `${config.host.cms}/policyById`
   }
 }

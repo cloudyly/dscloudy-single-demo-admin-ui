@@ -52,8 +52,8 @@ export default {
               }
             },
             btnList: [
-              /* 查看 */ { code: '10002', func: this.tempFn },
-              /* 编辑 */ { code: '10003', func: this.tempFn },
+              /* 查看 */ { code: '10002', func: this.onBtnViewClick },
+              /* 编辑 */ { code: '10003', func: this.onBtnEditClick },
               /* 隐藏 */ { code: '10004', func: this.tempFn },
               /* 删除 */ { code: '10005', func: this.onBtnDeleteClick }
             ]
@@ -85,6 +85,16 @@ export default {
     onBtnDeleteClick (item) {
       this.$refs.dialogDeleteRef.show(item, () => {
         console.log('确定删除', item)
+      })
+    },
+    onBtnEditClick (item) {
+      this.$router.push({
+        path: `/cms/policy_edit/${item.id}`
+      })
+    },
+    onBtnViewClick (item) {
+      this.$router.push({
+        path: `/cms/policy_view/${item.id}`
       })
     }
   }

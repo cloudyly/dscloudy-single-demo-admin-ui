@@ -20,7 +20,7 @@ const tagsView = {
         match: view.match
       }
       state.visitedViews.push(item)
-      if (view.meta.isCache) {
+      if (view.meta.isCache !== false) {
         if (state.cachedViews.includes(view.name)) {
           return
         }
