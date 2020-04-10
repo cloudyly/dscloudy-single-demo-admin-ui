@@ -15,9 +15,13 @@
     <div class="right">
       <el-button type="primary" icon="ds-user" circle class="btn-user"></el-button>
       <span class="username">用户名</span>
+      <!--
       <el-button type="primary">财务部</el-button>
+      -->
       <span class="divider">&nbsp;</span>
+      <!--
       <span>当前：武当乡</span>
+      -->
       <el-button type="primary" icon="ds-setting" class="settings"></el-button>
       <el-button type="primary"><i class="ds-exit" style="margin-right: 3px; vertical-align: middle"></i><span style="vertical-align: middle">退出</span></el-button>
     </div>

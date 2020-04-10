@@ -1,2 +1,2 @@
 import '@/modules/core/mock/core-mock'
-import '@/modules/cms/mock/cms-mock'
+import '@/modules/demo/mock/demo-mock'

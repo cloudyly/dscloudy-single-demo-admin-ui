@@ -3,7 +3,7 @@
   "records": [
     {
       "id": 1,
-      "category": "政务公开",
+      "category": "测试栏目",
       "title": "xxxxxx奥术大师大所大所大所多标题1",
       "createUser": "张三",
       "createOrg": "xxx",
@@ -12,7 +12,7 @@
     },
     {
       "id": 2,
-      "category": "政务公开",
+      "category": "测试栏目",
       "title": "xxxxxx奥术大师大所大所大所多标题1",
       "createUser": "张三",
       "createOrg": "xxx",
@@ -21,7 +21,7 @@
     },
     {
       "id": 3,
-      "category": "政务公开",
+      "category": "测试栏目",
       "title": "xxxxxx奥术大师大所大所大所多标题1",
       "createUser": "张三",
       "createOrg": "xxx",
@@ -30,7 +30,7 @@
     },
     {
       "id": 4,
-      "category": "政务公开",
+      "category": "测试栏目",
       "title": "xxxxxx奥术大师大所大所大所多标题1",
       "createUser": "张三",
       "createOrg": "xxx",
@@ -39,7 +39,7 @@
     },
     {
       "id": 5,
-      "category": "政务公开",
+      "category": "测试栏目",
       "title": "xxxxxx奥术大师大所大所大所多标题1",
       "createUser": "张三",
       "createOrg": "xxx",
@@ -48,7 +48,7 @@
     },
     {
       "id": 6,
-      "category": "政务公开",
+      "category": "测试栏目",
       "title": "xxxxxx奥术大师大所大所大所多标题1",
       "createUser": "张三",
       "createOrg": "xxx",
@@ -57,7 +57,7 @@
     },
     {
       "id": 7,
-      "category": "政务公开",
+      "category": "测试栏目",
       "title": "xxxxxx奥术大师大所大所大所多标题1",
       "createUser": "张三",
       "createOrg": "xxx",
@@ -66,7 +66,7 @@
     },
     {
       "id": 8,
-      "category": "政务公开",
+      "category": "测试栏目",
       "title": "xxxxxx奥术大师大所大所大所多标题1",
       "createUser": "张三",
       "createOrg": "xxx",
@@ -75,7 +75,7 @@
     },
     {
       "id": 9,
-      "category": "政务公开",
+      "category": "测试栏目",
       "title": "xxxxxx奥术大师大所大所大所多标题1",
       "createUser": "张三",
       "createOrg": "xxx",

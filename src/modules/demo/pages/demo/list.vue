@@ -11,7 +11,7 @@
 import urls from '@/config/urls'
 
 export default {
-  name: 'PolicyList',
+  name: 'DemoList',
   data () {
     return {
       dialogVisible: true,
@@ -24,9 +24,9 @@ export default {
         ]
       },
       dataListCfg: {
-        url: urls.cms.policyList,
+        url: urls.demo.demoList,
         selection: true,
-        title: '政策法规列表',
+        title: '通用CRUD',
         itemList: [
           { prop: 'category', label: '栏目名称', align: 'left', width: '80' },
           { prop: 'category', label: '子栏目', align: 'left', width: '80' },
@@ -79,7 +79,7 @@ export default {
     },
     onBtnAddClick () {
       this.$router.push({
-        path: '/cms/policy_add'
+        path: '/demo/demo_add'
       })
     },
     onBtnDeleteClick (item) {
@@ -89,12 +89,12 @@ export default {
     },
     onBtnEditClick (item) {
       this.$router.push({
-        path: `/cms/policy_edit/${item.id}`
+        path: `/demo/demo_edit/${item.id}`
       })
     },
     onBtnViewClick (item) {
       this.$router.push({
-        path: `/cms/policy_view/${item.id}`
+        path: `/demo/demo_view/${item.id}`
       })
     }
   }

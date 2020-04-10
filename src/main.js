@@ -18,16 +18,12 @@ import config from '@/config'
 import DscUI from '@/components'
 
 import moduleCore from '@/modules/core'
-import moduleCms from '@/modules/cms'
-import moduleSystem from '@/modules/system'
-// import moduleDemo from '@/modules/demo'
+import moduleDemo from '@/modules/demo'
 
 Vue.use(QuillEditor)
 
 Vue.use(moduleCore, store)
-Vue.use(moduleCms, store)
-Vue.use(moduleSystem, store)
-// Vue.use(moduleDemo, store)
+Vue.use(moduleDemo, store)
 
 if (config.isMock) {
   require('./base/mock')

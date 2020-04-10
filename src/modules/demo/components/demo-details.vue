@@ -42,9 +42,9 @@
 </template>
 
 <script>
-import * as policyApi from '../api/policy-api'
+import * as demoApi from '../api/demo-api'
 export default {
-  name: 'PolicyDetails',
+  name: 'DemoDetails',
   props: {
     opt: {
       type: String,
@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     getDetails (id) {
-      policyApi.getDetails(id).then(resp => {
+      demoApi.getDetails(id).then(resp => {
         this.form = { ...resp }
       })
     }

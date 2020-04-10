@@ -1,28 +1,22 @@
 const devGatewayUrl = 'http://localhost:8765'
-const devBlobUrl = 'http://localhost:1234'
-
 const uatGatewayUrl = ''
-const uatBlobUrl = ''
-
 const prodGatewayUrl = ''
-const prodBlobUrl = ''
 
-const getHost = (gatewayUrl, blobUrl) => {
+const getHost = (gatewayUrl) => {
   return {
     host: gatewayUrl, // 网关
-    blobUrl: blobUrl, // 文件上传
     coreHost: `${gatewayUrl}`, // 核心模块
-    cms: `${gatewayUrl}/api/cms`,
-    sys: `${gatewayUrl}/api/operation`
+    demoHost: `${gatewayUrl}/api/demo`,
+    sysHost: `${gatewayUrl}/api/operation`
   }
 }
 
 const envHostMap = {
-  development: getHost(devGatewayUrl, devBlobUrl),
-  dev: getHost(devGatewayUrl, devBlobUrl),
-  sit: getHost(devGatewayUrl, devBlobUrl),
-  uat: getHost(uatGatewayUrl, uatBlobUrl),
-  prod: getHost(prodGatewayUrl, prodBlobUrl)
+  development: getHost(devGatewayUrl),
+  dev: getHost(devGatewayUrl),
+  sit: getHost(devGatewayUrl),
+  uat: getHost(uatGatewayUrl),
+  prod: getHost(prodGatewayUrl)
 }
 
 /**
@@ -32,9 +26,9 @@ const config = {
   isMock: true,
   isMockMenu: true,
   host: {
-    core: '',
-    cms: '',
-    sys: ''
+    coreHost: '',
+    sysHost: '',
+    demoHost: ''
   },
   info: {
     title: '{{titleZH}}',
