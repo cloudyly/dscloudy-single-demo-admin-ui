@@ -1,12 +1,11 @@
-// const devGatewayUrl = 'http://localhost:8765'
-const devGatewayUrl = 'http://172.18.208.29:8765'
-const devBlobUrl = 'http://172.18.208.38'
+const devGatewayUrl = 'http://localhost:8765'
+const devBlobUrl = 'http://localhost:1234'
 
-const uatGatewayUrl = 'http://172.18.8.88:8765'
-const uatBlobUrl = 'http://172.18.8.88:8999'
+const uatGatewayUrl = ''
+const uatBlobUrl = ''
 
-const prodGatewayUrl = 'http://172.18.8.89:8765'
-const prodBlobUrl = 'http://172.18.8.89:8999'
+const prodGatewayUrl = ''
+const prodBlobUrl = ''
 
 const getHost = (gatewayUrl, blobUrl) => {
   return {
@@ -38,10 +37,8 @@ const config = {
     sys: ''
   },
   info: {
-    title: '山西省农业补贴管理平台',
-    subtitle: 'Shanxi agricultural subsidy management platform'
-    // title: '微前端技术测试',
-    // subtitle: 'Micro Font End Technical Test'
+    title: '{{titleZH}}',
+    subtitle: '{{titleEN}}'
   },
   /**
    * 路由的白名单
@@ -49,10 +46,7 @@ const config = {
   whiteList: [
     '/login',
     '/authredirect'
-  ],
-  tokenKeyName: 'HLA-SCRM-ADMIN-Token',
-  usernameKeyName: 'HLA-SCRM-ADMIN-UerName',
-  isPwdSafeKeyName: 'HLA-SCRM-ADMIN-IsPwdSafe'
+  ]
 }
 
 config.host = envHostMap[process.env.NODE_ENV]

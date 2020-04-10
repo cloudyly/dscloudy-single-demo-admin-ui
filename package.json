@@ -1,6 +1,8 @@
 {
-  "name": "amsc-admin-ui",
-  "version": "0.1.0",
+  "name": "{{projectName}}",
+  "version": "{{version}}",
+  "description": "{{description}}",
+  "author": "{{author}}",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
