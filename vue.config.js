@@ -3,7 +3,7 @@ const resolve = dir => path.join(__dirname, dir)
 
 module.exports = {
   devServer: {
-    port: 10086
+    port: {{port}}
   },
   chainWebpack: config => {
     config.resolve.alias
